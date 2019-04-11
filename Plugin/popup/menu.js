@@ -33,8 +33,8 @@ function updateSettings() {
 
   let settings = {
     bgColor: bgColor,
-    tentacles: false,
-    eyeCount: 6
+    primaryText: '#fff',
+    displayName: '#ccc'
   };
 
   browser.storage.local.set({
