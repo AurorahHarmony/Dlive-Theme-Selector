@@ -29,6 +29,8 @@ function gotSettings(item) {
 
   // Primary Text
   addNewStyle('.theme--light.application, .theme--dark.application {color:' + textColor + ' !important;}');
+  // Display name
+  addNewStyle('#displayname {color: ' + textColor + ' !important; opacity: 0.5; }');
 }
 
 function addNewStyle(newStyle) {
@@ -44,8 +46,6 @@ function addNewStyle(newStyle) {
 
 //Top Bar Bottom Border
 addNewStyle('.dark-mode .borderb-grey, .borderb-grey {border-bottom: 2px solid #212327 !important;}');
-// Display name
-addNewStyle('#displayname {color: ' + displayName + ' !important;}');
 
 //Settings
 var hideDarkmodeButton = false;
