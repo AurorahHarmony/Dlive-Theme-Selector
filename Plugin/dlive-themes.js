@@ -24,6 +24,10 @@ function settingsUpdate() {
 function gotSettings(item) {
   bgColor = `${item.settings.bgColor}`;
   console.log(bgColor);
+
+  // Main Background
+  addNewStyle('.dark-mode .bg-grey, .dark-mode .bg-white, .bg-white {background:' + bgColor + ' !important;}');
+
 }
 
 function addNewStyle(newStyle) {
@@ -39,8 +43,6 @@ function addNewStyle(newStyle) {
 
 //Top Bar Bottom Border
 addNewStyle('.dark-mode .borderb-grey, .borderb-grey {border-bottom: 2px solid #212327 !important;}');
-// Main Background
-addNewStyle('.dark-mode .bg-grey, .dark-mode .bg-white, .bg-white {background:' + bgColor + ' !important;}');
 // Primary Text
 addNewStyle('.theme--light.application, .theme--dark.application {color:' + primaryText + ' !important;}');
 // Display name

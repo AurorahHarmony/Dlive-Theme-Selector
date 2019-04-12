@@ -10,11 +10,20 @@
   <div style="color:red">
     Log: <span id="log"></span>
   </div>
-  
+
   <hr>
-  BG Color <input type="text" name="" value="" id="bgColor">
+  BG Color: <input type="text" value="bgColor" id="bgColor">
+  <hr>
+  Text Color: <input type="text" value="mainTextColor">
+  <br>
+  Automatically Color Subtexts: <input class="toggler" type="checkbox" id="toggler" data-toggle="SubtextColors" checked>
+  <div class="SubtextColors" id="SubtextColors" style="background: grey;">
+    <!-- Display Name Colors: <input type="text" name="" value="nameColors"> -->
+    null
+  </div>
 
   <script src="menu.js"></script>
+  <script src="interactions.js"></script>
 </body>
 
 </html>
