@@ -33,7 +33,6 @@ function gotSettings(item) {
 //Code Run only on startup
 function onStartup(item) {
   textColorToggle = `${item.settings.textColorToggle}`;
-  document.getElementById('log').innerHTML = textColorToggle;
 
   if (textColorToggle == 'true') {
     document.querySelector('.toggler').checked = true;
@@ -62,11 +61,9 @@ function setTextColor() {
 let checkbox = document.querySelector(".textColorToggle");
 checkbox.addEventListener('click', function() {
   if (this.checked) {
-    document.body.style.border = "5px solid red";
     textColorToggle = 'true';
     updateSettings(textColorToggle);
   } else {
-    document.body.style.border = "5px solid green";
     textColorToggle = 'false';
     updateSettings(textColorToggle);
   }
