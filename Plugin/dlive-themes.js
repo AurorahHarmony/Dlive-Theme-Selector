@@ -11,7 +11,7 @@ browser.storage.onChanged.addListener(settingsUpdate);
 
 //Defaults
 let bgColor = '#2C2F33',
-  primaryText = '#fff',
+  textColor = '#fff',
   displayName = '#ccc';
 
 //Update Settings
