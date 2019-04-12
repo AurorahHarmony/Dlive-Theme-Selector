@@ -17,6 +17,7 @@ let bgColor = '#2C2F33',
 //Update Settings
 function settingsUpdate() {
   console.log('Settings have been updated');
+  document.getElementById('styles_js').innerHTML = "/*Styles*/";
   browser.storage.local.get("settings").then(gotSettings, onError);
 }
 
