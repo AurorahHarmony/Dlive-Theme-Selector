@@ -36,9 +36,10 @@ function onStartup(item) {
   document.getElementById('log').innerHTML = textColorToggle;
 
   if (textColorToggle == 'true') {
-    document.getElementById("toggler").checked = true;
+    document.querySelector('.toggler').checked = true;
+    document.getElementById('SubtextColors').style.display = 'none';
   } else {
-    document.getElementById("toggler").checked = false;
+    document.querySelector('.toggler').checked = false;
   }
 }
 
