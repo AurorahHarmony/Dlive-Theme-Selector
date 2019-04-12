@@ -18,15 +18,18 @@ function onError(error) {
 //Define Variables
 let bgColor,
   textColor,
-  textColorToggle;
+  textColorToggle,
+  nameColor;
 
 //Update Visual Settings Values
 function gotSettings(item) {
   bgColor = `${item.settings.bgColor}`,
-    textColor = `${item.settings.textColor}`;
-  textColorToggle = `${item.settings.textColorToggle}`;
+  textColor = `${item.settings.textColor}`;
+  nameColor = `${item.settings.nameColor}`;
+
   document.getElementById('bgColor').value = bgColor;
   document.getElementById('textColor').value = textColor;
+  document.getElementById('nameColor').value = nameColor;
 
 };
 
@@ -45,14 +48,12 @@ function onStartup(item) {
 // Store Data
 //BG Color
 document.getElementById("bgColor").addEventListener("input", setBgColor);
-
 function setBgColor() {
   bgColor = document.getElementById('bgColor').value;
   updateSettings(bgColor);
 }
 //Text Color
 document.getElementById("textColor").addEventListener("input", setTextColor);
-
 function setTextColor() {
   textColor = document.getElementById('textColor').value;
   updateSettings(textColor);
@@ -68,6 +69,12 @@ checkbox.addEventListener('click', function() {
     updateSettings(textColorToggle);
   }
 });
+//Name Colors
+document.getElementById("nameColor").addEventListener("input", setNameColor);
+function setNameColor() {
+  nameColor = document.getElementById('nameColor').value;
+  updateSettings(nameColor);
+}
 
 //Update Settings
 function updateSettings() {
@@ -75,7 +82,8 @@ function updateSettings() {
   let settings = {
     bgColor: bgColor,
     textColor: textColor,
-    textColorToggle: textColorToggle
+    textColorToggle: textColorToggle,
+    nameColor: nameColor
   };
 
   browser.storage.local.set({

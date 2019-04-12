@@ -23,6 +23,8 @@ function settingsUpdate() {
 function gotSettings(item) {
   bgColor = `${item.settings.bgColor}`;
   textColor = `${item.settings.textColor}`;
+  textColorToggle = `${item.settings.textColorToggle}`;
+  nameColor = `${item.settings.nameColor}`;
 
   // Main Background
   addNewStyle('.dark-mode .bg-grey, .dark-mode .bg-white, .bg-white {background:' + bgColor + ' !important;}');
@@ -30,7 +32,12 @@ function gotSettings(item) {
   // Primary Text
   addNewStyle('.theme--light.application, .theme--dark.application {color:' + textColor + ' !important;}');
   // Display name
-  addNewStyle('#displayname {color: ' + textColor + ' !important; opacity: 0.5; }');
+
+  if (textColorToggle == 'true') {
+    addNewStyle('#displayname {color: ' + textColor + ' !important; opacity: 0.5; }');
+  } else {
+    addNewStyle('#displayname {color: ' + nameColor + ' !important; opacity: ; }');
+  }
 }
 
 function addNewStyle(newStyle) {
@@ -45,7 +52,10 @@ function addNewStyle(newStyle) {
 }
 
 //Top Bar Bottom Border
-addNewStyle('.dark-mode .borderb-grey, .borderb-grey {border-bottom: 2px solid #212327 !important;}');
+addNewStyle('.dark-mode .borderb-grey, .borderb-grey {border-bottom: 2px solid red !important;}');
+
+//Border Colors
+addNewStyle('.border-grey, .dark-mode .border-grey, .borderl-grey, .dark-mode .borderl-grey {border-color:blue !important;}');
 
 //Settings
 var hideDarkmodeButton = false;
