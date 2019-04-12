@@ -12,8 +12,7 @@ browser.storage.onChanged.addListener(settingsUpdate);
 //Defaults
 let bgColor = '#2C2F33',
   primaryText = '#fff',
-  displayName = '#ccc',
-  test;
+  displayName = '#ccc';
 
 //Update Settings
 function settingsUpdate() {
@@ -23,11 +22,13 @@ function settingsUpdate() {
 
 function gotSettings(item) {
   bgColor = `${item.settings.bgColor}`;
-  console.log(bgColor);
+  textColor = `${item.settings.textColor}`;
 
   // Main Background
   addNewStyle('.dark-mode .bg-grey, .dark-mode .bg-white, .bg-white {background:' + bgColor + ' !important;}');
 
+  // Primary Text
+  addNewStyle('.theme--light.application, .theme--dark.application {color:' + textColor + ' !important;}');
 }
 
 function addNewStyle(newStyle) {
@@ -43,8 +44,6 @@ function addNewStyle(newStyle) {
 
 //Top Bar Bottom Border
 addNewStyle('.dark-mode .borderb-grey, .borderb-grey {border-bottom: 2px solid #212327 !important;}');
-// Primary Text
-addNewStyle('.theme--light.application, .theme--dark.application {color:' + primaryText + ' !important;}');
 // Display name
 addNewStyle('#displayname {color: ' + displayName + ' !important;}');
 
