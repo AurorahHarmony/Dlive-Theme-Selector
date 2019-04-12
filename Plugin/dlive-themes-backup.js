@@ -32,7 +32,7 @@ let bgColor = '#2C2F33',
 //Update Settings
 function settingsUpdate() {
   console.log('Settings have been updated');
-  document.getElementById('styles_js').innerHTML = "/*DLive Themer Styles*/";
+  // document.getElementById('styles_js').innerHTML = "/*DLive Themer Styles*/";
   browser.storage.local.get("settings").then(gotSettings, onError);
 }
 
@@ -43,7 +43,7 @@ function gotSettings(item) {
   nameColor = `${item.settings.nameColor}`;
 
   // Main Background
-  addNewStyle('.dark-mode .bg-grey, .dark-mode .bg-white {background:' + bgColor + ' !important;}');
+  addNewStyle('.dark-mode .bg-grey, .dark-mode .bg-white, .bg-white {background:' + bgColor + ' !important;}');
 
   // Primary Text
   addNewStyle('.theme--light.application, .theme--dark.application {color:' + textColor + ' !important;}');
@@ -55,7 +55,7 @@ function gotSettings(item) {
     addNewStyle('#displayname {color: ' + nameColor + ' !important; opacity: ; }');
   }
 
-  console.log(bgColor);
+  console.log('Complete');
 }
 
 function addNewStyle(newStyle) {
