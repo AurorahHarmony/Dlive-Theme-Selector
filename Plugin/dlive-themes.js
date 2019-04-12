@@ -1,6 +1,19 @@
 //Announce Plugin Load
 console.log('DLIVE Themer plugin loaded');
 
+//Check if page loaded
+if (window.addEventListener) { // Mozilla, Netscape, Firefox
+    window.addEventListener('load', WindowLoad, false);
+} else if (window.attachEvent) { // IE
+    window.attachEvent('onload', WindowLoad);
+}
+
+function WindowLoad(event) {
+    console.log("page loaded");
+}
+settingsUpdate();
+
+
 //Error Handler
 function onError(error) {
   console.log(error);
@@ -17,7 +30,7 @@ let bgColor = '#2C2F33',
 //Update Settings
 function settingsUpdate() {
   console.log('Settings have been updated');
-  document.getElementById('styles_js').innerHTML = "/*Styles*/";
+  // document.getElementById('styles_js').innerHTML = "/*DLive Themer Styles*/";
   browser.storage.local.get("settings").then(gotSettings, onError);
 }
 
