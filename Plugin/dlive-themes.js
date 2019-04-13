@@ -25,9 +25,11 @@ function onError(error) {
 
 //Defaults
 let bgColor = '#2C2F33',
+  secondaryColor = '#ccf',
   textColor = '#fff',
   textColorToggle = 'false',
-  nameColor = 'red';
+  nameColor = 'red',
+  nameOpacity = 0.5;
 
 //Update Settings
 function settingsUpdate() {
@@ -50,6 +52,7 @@ function addNewStyle(newStyle) {
 
 function gotSettings(item) {
   bgColor = `${item.settings.bgColor}`;
+  secondaryColor = `${item.settings.secondaryColor}`;
   textColor = `${item.settings.textColor}`;
   textColorToggle = `${item.settings.textColorToggle}`;
   nameColor = `${item.settings.nameColor}`;
@@ -57,6 +60,12 @@ function gotSettings(item) {
 
   // Main Background
   addNewStyle('.dark-mode .bg-grey, .dark-mode .bg-white, .bg-white {background:' + bgColor + ' !important;}');
+
+  //Secondary Colors
+    //SecondaryColors
+    addNewStyle('.table-wrap .table-wrap-content .creator-wrap .creator-box .creator-number .creator-number-rank, .table-wrap .table-wrap-header {background:' + secondaryColor + ' !important;}');
+    //InfoBox Colors
+    addNewStyle('.theme--light.v-sheet, .theme--dark.v-card, .theme--dark.v-tabs__bar, .v-tabs__wrapper {background-color: ' + secondaryColor + '!important;}');
 
   // Primary Text
   addNewStyle('.theme--light.application, .theme--dark.application {color:' + textColor + ' !important;}');
@@ -77,10 +86,6 @@ function gotSettings(item) {
   addNewStyle('.border-grey, .dark-mode .border-grey, .borderl-grey, .dark-mode .borderl-grey,.dark-mode .borderb-grey, .borderb-grey {border-color:blue !important;}');
   //MainText
   addNewStyle('.theme--light.v-btn,.theme--dark.v-btn, .text-constant-black {color:pink !important;}');
-  //SecondaryColors
-  addNewStyle('.table-wrap .table-wrap-content .creator-wrap .creator-box .creator-number .creator-number-rank, .table-wrap .table-wrap-header {background:purple !important;}');
-  //InfoBox Colors
-  addNewStyle('.theme--light.v-sheet, .theme--dark.v-card, .theme--dark.v-tabs__bar {background: orange!important;}');
   //Dropdown Colors
   addNewStyle('.theme--dark.v-list, .theme--light.v-list {background: purple; color: orange;}');
   //Dropdowns BG
@@ -103,7 +108,7 @@ function gotSettings(item) {
   //Curve Video Edges
   addNewStyle('.livestream-video-test .streamer-livestream-test {border-radius: 25px;}');
   //Curve Menu Bar
-  addNewStyle('.v-tabs__bar {border-radius: 10px 10px 0px 0px;}');
+  addNewStyle('.v-tabs__bar, .v-tabs__wrapper {border-radius: 10px 10px 0px 0px;}');
   addNewStyle('.v-window-item .v-card {border-radius: 0px 0px 10px 10px}');
   //Curve Thumbnails
   addNewStyle('.thumbnail, .thumbnail img {border-radius: 5px}');

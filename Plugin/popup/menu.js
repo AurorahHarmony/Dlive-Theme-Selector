@@ -17,6 +17,7 @@ function onError(error) {
 
 //Define Variables
 let bgColor,
+  secondaryColor,
   textColor,
   textColorToggle,
   nameColor,
@@ -25,10 +26,12 @@ let bgColor,
 //Update Visual Settings Values
 function gotSettings(item) {
   bgColor = `${item.settings.bgColor}`,
+  secondaryColor = `${item.settings.secondaryColor}`;
   textColor = `${item.settings.textColor}`;
   nameColor = `${item.settings.nameColor}`;
 
   document.getElementById('bgColor').value = bgColor;
+  document.getElementById('secondaryColor').value = secondaryColor;
   document.getElementById('textColor').value = textColor;
   document.getElementById('nameColor').value = nameColor;
 
@@ -54,10 +57,16 @@ function onStartup(item) {
 
 // Store Data
 //BG Color
-document.getElementById("bgColor").addEventListener("input", setBgColor);
+document.getElementById('bgColor').addEventListener('input', setBgColor);
 function setBgColor() {
   bgColor = document.getElementById('bgColor').value;
   updateSettings(bgColor);
+}
+//Secondary Color
+document.getElementById('secondaryColor').addEventListener('input', setSecondaryColor);
+function setSecondaryColor() {
+  secondaryColor = document.getElementById('secondaryColor').value;
+  updateSettings(secondaryColor);
 }
 //Text Color
 document.getElementById("textColor").addEventListener("input", setTextColor);
@@ -95,6 +104,7 @@ function updateSettings() {
 
   let settings = {
     bgColor: bgColor,
+    secondaryColor: secondaryColor,
     textColor: textColor,
     textColorToggle: textColorToggle,
     nameColor: nameColor,
