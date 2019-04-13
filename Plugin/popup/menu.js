@@ -19,7 +19,8 @@ function onError(error) {
 let bgColor,
   textColor,
   textColorToggle,
-  nameColor;
+  nameColor,
+  nameOpacity;
 
 //Update Visual Settings Values
 function gotSettings(item) {
@@ -36,6 +37,10 @@ function gotSettings(item) {
 //Code Run only on startup
 function onStartup(item) {
   textColorToggle = `${item.settings.textColorToggle}`;
+  nameOpacity = `${item.settings.nameOpacity}`;
+  nameOpacity = Number(nameOpacity) * 100;
+
+  document.getElementById('log').innerHTML = nameOpacity;
 
   if (textColorToggle == 'true') {
     document.querySelector('.toggler').checked = true;
@@ -43,6 +48,8 @@ function onStartup(item) {
   } else {
     document.querySelector('.toggler').checked = false;
   }
+
+  document.getElementById('nameOpacity').value = nameOpacity;
 }
 
 // Store Data
@@ -76,6 +83,13 @@ function setNameColor() {
   updateSettings(nameColor);
 }
 
+//Name Opacity
+document.getElementById("nameOpacity").addEventListener("input", setNameOpacity);
+function setNameOpacity() {
+  nameOpacity = document.getElementById('nameOpacity').value / 100;
+  updateSettings(nameOpacity);
+}
+
 //Update Settings
 function updateSettings() {
 
@@ -83,7 +97,8 @@ function updateSettings() {
     bgColor: bgColor,
     textColor: textColor,
     textColorToggle: textColorToggle,
-    nameColor: nameColor
+    nameColor: nameColor,
+    nameOpacity: nameOpacity
   };
 
   browser.storage.local.set({
