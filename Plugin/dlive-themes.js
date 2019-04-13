@@ -1,5 +1,11 @@
 //Announce Plugin Load
 console.log('DLIVE Themer plugin loaded');
+//Listen for updates to storage in Plugin settings
+browser.storage.onChanged.addListener(settingsUpdate);
+//Init Styles Section
+addNewStyle('/*INIT*/');
+//Run SettingsUpdater on script load
+settingsUpdate();
 
 //Check if page loaded
 if (window.addEventListener) { // Mozilla, Netscape, Firefox
@@ -11,29 +17,35 @@ if (window.addEventListener) { // Mozilla, Netscape, Firefox
 function WindowLoad(event) {
     console.log("page loaded");
 }
-settingsUpdate();
-
-//Run SettingsUpdater on script load
-
 
 //Error Handler
 function onError(error) {
   console.log(error);
 }
 
-//Listen for updates to storage in Plugin settings
-browser.storage.onChanged.addListener(settingsUpdate);
-
 //Defaults
 let bgColor = '#2C2F33',
   textColor = '#fff',
-  displayName = '#ccc';
+  textColorToggle = 'false',
+  nameColor = 'red';
 
 //Update Settings
 function settingsUpdate() {
-  console.log('Settings have been updated');
-  document.getElementById('styles_js').innerHTML = "/*DLive Themer Styles*/";
+  console.log('Settings Updating');
+  document.querySelector("#styles_js").innerHTML =   '/*DLive Themer Styles*/';
+
   browser.storage.local.get("settings").then(gotSettings, onError);
+}
+
+function addNewStyle(newStyle) {
+  var styleElement = document.getElementById('styles_js');
+  if (!styleElement) {
+    styleElement = document.createElement('style');
+    styleElement.type = 'text/css';
+    styleElement.id = 'styles_js';
+    document.getElementsByTagName('head')[0].appendChild(styleElement);
+  }
+  styleElement.appendChild(document.createTextNode(newStyle));
 }
 
 function gotSettings(item) {
@@ -42,6 +54,7 @@ function gotSettings(item) {
   textColorToggle = `${item.settings.textColorToggle}`;
   nameColor = `${item.settings.nameColor}`;
 
+  console.log(bgColor);
   // Main Background
   addNewStyle('.dark-mode .bg-grey, .dark-mode .bg-white {background:' + bgColor + ' !important;}');
 
@@ -55,7 +68,6 @@ function gotSettings(item) {
     addNewStyle('#displayname {color: ' + nameColor + ' !important; opacity: ; }');
   }
 
-  console.log(bgColor);
 
   //Placeholder Style add thingies
   //Border Colors
@@ -67,14 +79,17 @@ function gotSettings(item) {
 
   //Button Backgrounds
   addNewStyle('.bg-primary {background: purple !important;}');
-  //HeaderBottom Borders
-  addNewStyle('.homepage-toolbar .v-toolbar__content .toolbar-items-center .v-btn--active::before, .homepage-toolbar .v-toolbar__content .toolbar-items-center .v-btn:focus::before, .homepage-toolbar .v-toolbar__content .toolbar-items-center .v-btn:hover::before, .homepage-toolbar .v-toolbar__content .toolbar-items-center .v-ripple_containe {border-color: purple!important;}');
+  //HeaderBottom of Buttons
+  addNewStyle('.homepage-toolbar .v-toolbar__content .toolbar-items-center .v-btn--active::before, .homepage-toolbar .v-toolbar__content .toolbar-items-center .v-btn:focus::before, .homepage-toolbar .v-toolbar__content .toolbar-items-center .v-btn:hover::before, .homepage-toolbar .v-toolbar__content .toolbar-items-center .v-ripple_containe, .homepage-toolbar .v-toolbar__content .toolbar-items-center .yellow-bottom.v-btn::before {border-color: green!important;}');
 
   //Curve Video Edges
   addNewStyle('.livestream-video-test .streamer-livestream-test {border-radius: 25px;}');
   //Curve Menu Bar
   addNewStyle('.v-tabs__bar {border-radius: 10px 10px 0px 0px;}');
   addNewStyle('.v-window-item .v-card {border-radius: 0px 0px 10px 10px}');
+  //Curve Thumbnails
+  // addNewStyle('.thumbnail, .thumbnail img {border-radius: 5px}');
+  // addNewStyle('.postsnap-info {border-radius: 0px 0px 5px 5px}');
   //Hide Scroll Bars
   addNewStyle('div div.v-tabs__wrapper {overflow: hidden!important;}');
 
@@ -83,16 +98,6 @@ function gotSettings(item) {
   elem.parentNode.removeChild(elem);
 }
 
-function addNewStyle(newStyle) {
-  var styleElement = document.getElementById('styles_js');
-  if (!styleElement) {
-    styleElement = document.createElement('style');
-    styleElement.type = 'text/css';
-    styleElement.id = 'styles_js';
-    document.getElementsByTagName('head')[0].appendChild(styleElement);
-  }
-  styleElement.appendChild(document.createTextNode(newStyle));
-}
 
 
 
